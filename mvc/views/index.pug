@@ -2,11 +2,15 @@ doctype html
 head
   meta(charset='UTF-8')
   title Abrechnungsrechner
+  
 h1 Abrechnungsrechner
 | Add people:
 input#name(type='text')
 button(onclick='addRow()') +
-button(onclick='equalAmounts()') Equal Amounts
+button(onclick='equalAmounts();') Equal Amounts
+button(onclick='clearRows();') Clear
 p#rows
 button(onclick='rechne();') Rechne!
 p#answer
+script(src="/js/makeTable.js")
+script(src="/js/calcDebts.js")
