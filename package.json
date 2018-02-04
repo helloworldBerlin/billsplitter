@@ -2,7 +2,7 @@
   "name": "abrechnungsrechner",
   "version": "1.0.0",
   "description": "a tool to split bills between any number of persons, also you can weight how much one has to pay depending on  how much a persons was involved",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/MaxHf/billsplitter/issues"
   },
-  "homepage": "https://github.com/MaxHf/billsplitter#readme"
+  "homepage": "https://github.com/MaxHf/billsplitter#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
+  }
 }
