@@ -28,7 +28,12 @@ function equalAmounts(){
 
 function clearRows(){
     var rows = document.getElementById("rows");
+    var answer = document.getElementById("answer");
+
     while(rows.firstChild){
         rows.removeChild(rows.firstChild);
+    }
+    while(answer.firstChild){
+        answer.removeChild(answer.firstChild);
     }
 }
