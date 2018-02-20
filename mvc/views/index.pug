@@ -13,7 +13,13 @@ button(onclick='clearRows();') Clear
 p#rows
 button(onclick='rechne();') Rechne!
 p#answer
+p Enter ID to add data to existing DB file. If no ID is specified a new DB file will be created and you will be given it's ID.:
+input#enterID
 button(onclick='saveData();') Save to DB
+p#response
+p Enter ID to get data from existing DB:
+input#dataID
+button(onclick='getData();') Get Data
 script(src="/js/makeTable.js")
 script(src="/js/calcDebts.js")
-script(src="/js/saveData.js")
+script(src="/js/handleData.js")

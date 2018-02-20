@@ -32,7 +32,6 @@ function rechne(){
                 res.innerHTML += `<div>${us.name} schuldet ${os.name} ${Number(Math.min(-us.amount, os.amount)).toFixed(2)} €</div> <br/>`;
             }
         }
-        console.log(differentials);
     }
 
     var sum = 0;
