@@ -6,7 +6,7 @@ router.post("/save", (req, res) => {
     res.send(dbModel.saveData(req.body, req.query.id));
 });
 router.get("/get", (req, res) => {
-    res.send(dbModel.sendData(req));
+    res.json(JSON.stringify(dbModel.sendData(req.query.id)));
 });
 
 module.exports = router;

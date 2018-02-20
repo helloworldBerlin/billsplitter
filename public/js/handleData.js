@@ -21,11 +21,13 @@ function saveData(){
     }).then(res => {
         return res.text();
     }).then(data => {
+        document.getElementById("saveResponse").innerHTML = data;
         console.log(data);
     });
 }
 
 function getData(){
+    var id = document.getElementById("dataID");
     fetch("/data/get?id=" + id, {
         method: "GET"
     }).then(res => {
