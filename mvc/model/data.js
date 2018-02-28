@@ -1,6 +1,27 @@
 var fs = require("fs");
 
 module.exports.saveData = (data, id) => {
+    function prettyDate(x){
+        x = x.toString();
+        if(x.length == 1){
+            x = "0" + x;
+        }
+        return x;
+    }
+
+    function makeDate(){
+        var today = new Date();
+        var s = prettyDate(today.getSeconds());
+        var min = prettyDate(today.getMinutes());
+        var h = prettyDate(today.getHours());
+        var d = prettyDate(today.getDate());
+        var m = prettyDate(today.getMonth() + 1);
+        var y = today.getFullYear();
+        today = h + ":" + min + ":" + s + "_" + d + "/" + m + "/" + y;
+
+        return today;
+    }
+
     function makeID(data){
         var id = "";
 
@@ -11,22 +32,19 @@ module.exports.saveData = (data, id) => {
     }
 
     function saveFile(id, data){
-        var today = new Date();
-        var d = today.getDate();
-        var m = today.getMonth() + 1;
-        var y = today.getFullYear();
-        today = d + "/" + m + "/" + y;
+        try {
+            oldData = JSON.parse(fs.readFileSync("./db/" + id + ".json", "utf-8"));
+        } catch(e){
+            return " ID doesn't exist. " + e;
+        }
 
-        var saveData = {
-            date: today,
-            data: data
-        };
+        oldData[makeDate()] = data;
 
         try {
-            fs.appendFileSync("./db/" + id + ".json", JSON.stringify(data, null, 4));
-            return " Data saved successfully."
+            fs.writeFileSync("./db/" + id + ".json", JSON.stringify(oldData, null, 4));
+            return " Data saved successfully.";
         } catch(e){
-            return " Failed to append data to the file. " + e;
+            return "Failed to write to file. " + e;
         }
     }
 
@@ -34,8 +52,9 @@ module.exports.saveData = (data, id) => {
 
     if(id == ""){
         id = makeID(data);
+
         try {
-            fs.writeFileSync("./db/" + id + ".json");
+            fs.writeFileSync("./db/" + id + ".json", JSON.stringify({id: id}));
             resString += "File created with ID: " + id + ".";
         } catch(e){
             return "Failed to create new file. " + e;
@@ -45,7 +64,6 @@ module.exports.saveData = (data, id) => {
     } else {
         resString += saveFile(id, data);
     }
-    //write data to file with timestamp
 
     return resString;
 }
